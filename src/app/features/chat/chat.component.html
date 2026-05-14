@@ -1,0 +1,36 @@
+<div class="chat-shell">
+
+  <h1>StateflowX Relay Ops</h1>
+
+  <textarea
+    #input
+    rows="6"
+    placeholder="Enter prompt..."
+    (input)="prompt.set(input.value)">
+  </textarea>
+
+  <br />
+  <button
+    (click)="submit()"
+    [disabled]="loading()">
+
+    @if (loading()) {
+      Processing...
+    } @else {
+      Submit
+    }
+
+  </button>
+
+  @if (response()) {
+
+    <section class="response-panel">
+
+      <h2>Response</h2>
+
+      <pre>{{ response() }}</pre>
+
+    </section>
+  }
+
+</div>
