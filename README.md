@@ -45,6 +45,5 @@ The current demo executes a weather workflow by:
 
 ## Related Packages
 
-- `@stateflowx/runtime`
-- `@stateflowx/client`
-
+- [`@stateflowx/runtime`](https://www.npmjs.com/package/@stateflowx/runtime)
+- [`@stateflowx/client`](https://www.npmjs.com/package/@stateflowx/client)
