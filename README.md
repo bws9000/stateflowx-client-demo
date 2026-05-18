@@ -1,16 +1,3 @@
-# StateFlowX Angular Client Demo
-
-Example Angular client application for the StateFlowX runtime framework.
-
-This project demonstrates:
-
-- Runtime initialization from Angular
-- JSON-RPC communication over WebSockets
-- Workflow execution through the StateFlowX runtime
-- Provider orchestration
-- Service-driven operational workflows
-- Realtime runtime/client interaction
-
 ## Architecture
 
 ```txt
@@ -23,6 +10,7 @@ JSON-RPC over WebSockets
 @stateflowx/runtime
         ↓
 Providers / Services / Workflows
+```
 
 ## Example Workflow
 
@@ -45,5 +33,5 @@ The current demo executes a weather workflow by:
 
 ## Related Packages
 
-- [`@stateflowx/runtime`](https://www.npmjs.com/package/@stateflowx/runtime)
-- [`@stateflowx/client`](https://www.npmjs.com/package/@stateflowx/client)
+- [@stateflowx/runtime](https://www.npmjs.com/package/@stateflowx/runtime)
+- [@stateflowx/client](https://www.npmjs.com/package/@stateflowx/client)
