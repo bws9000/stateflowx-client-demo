@@ -55,6 +55,8 @@ export class WeatherComponent implements OnInit {
     //   url: 'ws://localhost:3001',
     // }),
 
+    store: false, // Disable the default InMemoryStore
+
     transport: http({
       url: 'http://localhost:3000/rpc',
     }),
