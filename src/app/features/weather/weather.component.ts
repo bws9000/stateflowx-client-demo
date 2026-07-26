@@ -10,6 +10,7 @@ import {
   createClient,
   defineConfig,
   gemini,
+  openai,
   http,
   jsonRpc,
   mockProvider,
@@ -62,8 +63,9 @@ export class WeatherComponent implements OnInit {
     }),
 
     providers: [
-      gemini({ priority: 1 }),
-      mockProvider({ priority: 2 }),
+      openai({priority: 1}),
+      //gemini({ priority: 1 }),
+      //mockProvider({ priority: 2 }),
     ],
 
     services: [
@@ -79,7 +81,7 @@ export class WeatherComponent implements OnInit {
       {
         route: 'weather.execute',
         service: 'weather',
-        provider: 'default',
+        provider: 'openai',
         prompt: `
           Return ONLY valid JSON.
 
