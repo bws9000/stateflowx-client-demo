@@ -64,8 +64,8 @@ export class WeatherComponent implements OnInit {
 
     providers: [
       openai({priority: 1}),
-      //gemini({ priority: 1 }),
-      //mockProvider({ priority: 2 }),
+      gemini({ priority: 2 }),
+      mockProvider({ priority: 3 }),
     ],
 
     services: [
@@ -81,7 +81,7 @@ export class WeatherComponent implements OnInit {
       {
         route: 'weather.execute',
         service: 'weather',
-        provider: 'openai',
+        //provider: 'gemini', or 'default' <-- FIRST CHOICE if fails fallback to priority
         prompt: `
           Return ONLY valid JSON.
 
