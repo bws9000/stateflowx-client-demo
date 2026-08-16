@@ -51,7 +51,7 @@ export class WeatherComponent implements OnInit {
     //   - Request / response
     //   - Realtime runtime events
     //
-    
+
     // transport: websocket({
     //   url: 'ws://localhost:3001',
     // }),
@@ -63,7 +63,7 @@ export class WeatherComponent implements OnInit {
     }),
 
     providers: [
-      openai({priority: 1}),
+      openai({ priority: 1 }),
       gemini({ priority: 2 }),
       mockProvider({ priority: 3 }),
     ],
@@ -77,12 +77,29 @@ export class WeatherComponent implements OnInit {
       },
     ],
 
-    workflows: [
+    flows: [
       {
+        name: 'Weather Analysis',
         route: 'weather.execute',
-        service: 'weather',
-        //provider: 'gemini', or 'default' <-- FIRST CHOICE if fails fallback to priority
-        prompt: `
+
+        actions: [
+          {
+            id: 'weather-service',
+            type: 'service',
+            service: 'weather',
+
+            outputConnectors: [
+              {
+                actionId: 'weather-provider',
+              },
+            ],
+          },
+          {
+            id: 'weather-provider',
+            type: 'provider',
+            provider: 'gemini',
+
+            prompt: `
           Return ONLY valid JSON.
 
           Return exactly one array item.
@@ -97,8 +114,12 @@ export class WeatherComponent implements OnInit {
             }
           ]
 
-          Use the supplied weather data.
+          Use the supplied weather data from {{weather-service}}
         `,
+
+            output: true,
+          },
+        ],
       },
     ],
   });
