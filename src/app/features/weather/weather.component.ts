@@ -80,23 +80,29 @@ export class WeatherComponent implements OnInit {
     flows: [
       {
         name: 'Weather Analysis',
+
         route: 'weather.execute',
 
         actions: [
           {
             id: 'weather-service',
+
             type: 'service',
+
             service: 'weather',
 
             outputConnectors: [
               {
-                actionId: 'weather-provider',
+                actionId:
+                  'weather-provider',
               },
             ],
           },
           {
             id: 'weather-provider',
+
             type: 'provider',
+
             provider: 'gemini',
 
             prompt: `
@@ -118,7 +124,42 @@ export class WeatherComponent implements OnInit {
         `,
 
             output: true,
+
+            //
+            // Optional MySQL persistence
+            //
+            // Uncomment this connector and the
+            // weather-store action below.
+            //
+            // The runtime host must use:
+            // STORE_TYPE=mysql
+            //
+            // outputConnectors: [
+            //   {
+            //     actionId:
+            //       'weather-store',
+            //   },
+            // ],
           },
+
+          //
+          // Optional MySQL store action
+          //
+          // {
+          //   id: 'weather-store',
+          //
+          //   type: 'store',
+          //
+          //   store: 'mysql',
+          //
+          //   operation: 'set',
+          //
+          //   key: 'weather:last-result',
+          //
+          //   log: true,
+          //
+          //   output: true,
+          // },
         ],
       },
     ],
