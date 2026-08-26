@@ -215,6 +215,12 @@ export class WeatherComponent implements OnInit {
       const parsed =
         this.parseJsonResponse(result);
 
+      if (parsed === null) {
+        this.response.set([]);
+        this.responseText.set(result);
+        return;
+      }
+
       this.response.set(parsed);
 
       this.responseText.set(
@@ -236,12 +242,26 @@ export class WeatherComponent implements OnInit {
     }
   }
 
-  private parseJsonResponse(response: string): WeatherRow[] {
+  // private parseJsonResponse(response: string): WeatherRow[] {
+  //   const cleaned = response
+  //     .replace(/```json/g, '')
+  //     .replace(/```/g, '')
+  //     .trim();
+
+  //   return JSON.parse(cleaned);
+  // }
+  private parseJsonResponse(
+    response: string
+  ): WeatherRow[] | null {
     const cleaned = response
       .replace(/```json/g, '')
       .replace(/```/g, '')
       .trim();
 
-    return JSON.parse(cleaned);
+    try {
+      return JSON.parse(cleaned);
+    } catch {
+      return null;
+    }
   }
 }
